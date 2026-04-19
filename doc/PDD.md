@@ -25,26 +25,27 @@ The game's name nor story is solidified, however, it will be a:
 ```tree
 ascii-rpg/
 ├── assets/
-│   ├── source_art/             # <-- INKSCAPE .SVG FILES LIVE HERE
-│   └── compiled_font/          # <-- Generated .hpp header maps
+│   ├── source-art/             # <-- INKSCAPE .SVG FILES LIVE HERE
+│   └── compiled-font/          # <-- Generated .hpp header maps
 ├── docs/
 │   ├── PDD.md                  # The document we just outlined
 │   └── CONTRIBUTING.md         # See Section 3 below
 ├── src/
-│   ├── Engine/                 # LIBRARY (Static Lib target in CMake)
-│   │   ├── TerminalManager.cpp   # Raw input, Alt Buffer, ANSI codes
-│   │   ├── Renderer.cpp          # Double buffering, Viewport clipping
-│   │   ├── Color.hpp             # RGB lerping, ANSI string generation
+│   ├── api/
+│   ├── engine/                 # LIBRARY (Static Lib target in CMake)
+│   │   ├── terminal-manager.cpp   # Raw input, Alt Buffer, ANSI codes
+│   │   ├── renderer.cpp          # Double buffering, Viewport clipping
+│   │   ├── color.hpp             # RGB lerping, ANSI string generation
 │   │   └── CMakeLists.txt
-│   ├── Game/                   # EXECUTABLE (Depends on Engine)
-│   │   ├── Entities/
-│   │   │   ├── Entity.cpp
-│   │   │   └── Player.cpp
-│   │   ├── Systems/
-│   │   │   └── DialogueManager.cpp
+│   ├── game/                   # EXECUTABLE (Depends on Engine)
+│   │   ├── entities/
+│   │   │   ├── entity.cpp
+│   │   │   └── player.cpp
+│   │   ├── dialog-manager/
+│   │   │   └── dialogue-manager.cpp
 │   │   ├── main.cpp
 │   │   └── CMakeLists.txt
-│   └── Utils/                  # Shared headers (String utils, File IO)
+│   └── utils/                  # Shared headers (String utils, File IO)
 ├── CMakeLists.txt              # Root: defines CMAKE_CXX_STANDARD 17
 └── README.md
 ```
@@ -677,7 +678,7 @@ ascii-rpg/
 │   │   │   ├── wall.png
 │   │   │   ├── goblin.png
 │   │   │   └── dragon.png           # Larger sprite sheet (e.g., 48×48)
-│   │   └── sprites/                 # Optional: multi‑cell sprite definitions
+│   │   └── sprites        # Optional: multi‑cell sprite definitions
 │   │       └── dragon.sprite        # Text file defining cell grid
 │   └── compiled_font/               # Generated C++ headers (never edit manually)
 │       ├── glyph_data.hpp
@@ -687,9 +688,9 @@ ascii-rpg/
 │   ├── requirements.txt             # Python dependencies
 |   └── test_glyph.cpp               # For testing glyph setup
 └── src/
-    └── Engine/
-        ├── Glyph.hpp                # Data structure for glyphs/sprites
-        ├── Renderer.cpp             # Uses generated headers
+    └── engine/
+        ├── glyph.hpp                # Data structure for glyphs/sprites
+        ├── renderer.cpp             # Uses generated headers
         └── ...
 ```
 ### Conversion Logic (Python Script)
