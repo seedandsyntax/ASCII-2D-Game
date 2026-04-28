@@ -8,7 +8,7 @@ int main(){
 
     int input;
     size_t times {0};
-    while ((input = getch()) != 'q'){ // press "q" to exist
+    while ((input = getch()) != 'q'){ // press "q" to exit
         if (input == KEY_UP) {
             times++;
             printw("arrow up detected: %d\n", times);
